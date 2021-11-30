@@ -1,5 +1,8 @@
 import React from 'react'
 import './App.css';
+import DateInput from './DateInput';
+import QuestionA from './QuestionA';
+import QuestionB from './QuestionB';
 import ReadData from './ReadData'
 
 function App() {
@@ -7,9 +10,9 @@ function App() {
 
   return (
     <div className="App">
-      <ReadData   
-     
-      />
+      <DateInput />
+      <QuestionA />
+      <QuestionB />
     </div>
   );
 }
