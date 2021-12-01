@@ -1,16 +1,14 @@
 import React from 'react'
 import './App.css';
-import DateInput from './DateInput';
+import Header from './Header';
 import QuestionA from './QuestionA';
 import QuestionB from './QuestionB';
-import ReadData from './ReadData'
 
 function App() {
 
-
   return (
     <div className="App">
-      <DateInput />
+      <Header />
       <QuestionA />
       <QuestionB />
     </div>
