@@ -1,13 +1,11 @@
 import React from 'react'
 
-function QuestionA() {
-
-   
+function C() {
     return (
         <div>
-           A
+            <h3>C</h3>
         </div>
     )
 }
 
-export default QuestionA
+export default C
