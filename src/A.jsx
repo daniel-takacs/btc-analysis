@@ -51,7 +51,7 @@ function A({ items, startDateInput, endDateInput }) {
  
     return (
         <div>  
-          <h3>A</h3>
+          <h3>A: How many days in the longes bearish trend within a given date range?</h3>
             <p>In bitcoin's historical data from CoinGecko, the price decreased <strong> {bestLength} </strong> days in a row 
             for the inputs from {formattedStartDate} and to {formattedEndDate}.</p> 
         </div>
