@@ -1,33 +1,58 @@
 import React from 'react'
 
-function B({ volumes }) {
+function B({ volumes, differenceInDays, isLoading }) {
+  console.log(volumes)
+  const volumesArray = []
 
-    console.log('VOLUMES', volumes)
+  const sortDayVolume = (diff, data)=> {
+    if(diff >= 90){
+      for(let i=0; i<data.length; i++){
+        volumesArray.push(data[i])
+      }
+      //console.log('more than 90')
+    }else {
+      for(let i=0; i<data.length; i=i+23){
+        volumesArray.push(data[i])
+      }
+      //console.log('less than 90')
+    }
+    return volumesArray
+  }
+  sortDayVolume(differenceInDays, volumes)
+  console.log('sorted volumes', volumesArray)
 
-    let currentMax = 0
+  //finding highest trading volume
+
     let max = 0
-    let date = 0
+    let timestamp = 0
 
-    for(let i=0; i<volumes.length; i++){
-        for(let j=0; j<volumes[i].length; j++){
-            if(volumes[i][1] > max){
-                max = volumes[i][1]
-                date = volumes[i][0]
+    function findHighestTradingVolume(arr){
+        for(let i=0; i<arr.length; i++){
+            for(let j=0; j<arr[i].length; j++){
+                if(arr[i][1] > max){
+                    max = arr[i][1]
+                    timestamp = arr[i][0]
+                }
             }
         }
     }
-    const formattedDate = convertDateToSuitableFormat(date)
+    findHighestTradingVolume(volumesArray)
+   
 
-    function convertDateToSuitableFormat(inputFormat) {
-      function pad(s) { return (s < 10) ? '0' + s : s; }
-        let d = new Date(inputFormat);
-        return [ d.getFullYear(), pad(d.getMonth()+1), pad(d.getDate())].join('/');
+
+    function timestampToDateConverter(timestamp){
+        let t = new Date(timestamp)
+        let date = (t.getFullYear()+"/"+(t.getMonth()+1)+"/"+t.getDate())
+        return date
     }
-    console.log('MAX', max)
+    let date = timestampToDateConverter(timestamp)
+
+
+debugger
     return (
         <div>
-            <h3>B</h3>
-            <p>{formattedDate} within a given date range had the hihest trading volume </p>
+            <h3>B: Which date within a given date range had the highest trading volume?</h3>
+            <p>{date} within a given date range had the hihest trading volume </p>
             <p>the volume on that day <strong>{max}</strong></p>
         </div>
     )
