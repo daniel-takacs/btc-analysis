@@ -4,12 +4,13 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import A from './A'
 import B from './B';
+import C from './C';
 
 function App() {
 
-  const [items, setItems] = useState([]);
+  const [prices, setprices] = useState([]);
   const [volumes, setVolumes] = useState([])
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState('Answer');
   const [error, setError] = useState(null);
   const [startDateInput, setStartDateInput] = useState(new Date("2020/03/01"));
   const [endDateInput, setEndDateInput] = useState(new Date("2021/08/01"))
@@ -30,26 +31,28 @@ function App() {
   }
   
   const handleClick = ()=> {
-    fetchDataPrices()
-    fetchDataVolumes()
+    fetchData()
+    //fetchDataVolumes()
   }
 
   const API_URL = `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart/range?vs_currency=eur&from=${startTimestamp}&to=${endTimestamp}`
   
-  const fetchDataPrices = ()=> {
-        setIsLoading(true)
+  const fetchData = ()=> {
+        setIsLoading('Loading...')
+        setError(null)
         fetch(API_URL)
           .then(res => res.json())
           .then(data => {
             setIsLoading(false)
-            setItems(data.prices)
+            setprices(data.prices)
+            setVolumes(data.total_volumes)
           })
           .catch(err => {
             setIsLoading(false)
             setError(err.message)
           })
   }
-
+/* 
   const fetchDataVolumes = ()=> {
       setIsLoading(true)
       fetch(API_URL)
@@ -64,7 +67,7 @@ function App() {
             setError(err.message)
           })
   }
-
+ */
   //Sort prices to an array
   const pricesArray = []
 
@@ -82,21 +85,18 @@ function App() {
     }
     return pricesArray
   }
-  sortDayPrice(differenceInDays, items)
+  sortDayPrice(differenceInDays, prices)
   //console.log('sorted prices',pricesArray)
 
-  
-
-
-  //debugger
     return (
       <div className="App">
          <DatePicker dateFormat="yyyy-MM-dd" selected={startDateInput} onChange={date => setStartDateInput(date)}startDateInput={startDateInput}
                      endDateInput={endDateInput}/>
          <DatePicker dateFormat="yyyy-MM-dd" selected={endDateInput} onChange={date => setEndDateInput(date)}/>
         <button onClick={handleClick}>Get the data</button>
-        <A isLoading={isLoading} items={items} pricesArray={pricesArray}/>
-        <B volumes={volumes} isLoading={isLoading} differenceInDays={differenceInDays}/>
+        <A prices={prices} isLoading={isLoading} pricesArray={pricesArray} error={error}/>
+        <B volumes={volumes} isLoading={isLoading} differenceInDays={differenceInDays}error={error}/>
+        <C prices={prices} isLoading={isLoading} pricesArray={pricesArray} differenceInDays={differenceInDays}error={error}/>
       </div>
     );
   }

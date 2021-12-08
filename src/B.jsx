@@ -1,6 +1,6 @@
 import React from 'react'
 
-function B({ volumes, differenceInDays, isLoading }) {
+function B({ volumes, differenceInDays, isLoading, error }) {
   console.log(volumes)
   const volumesArray = []
 
@@ -38,8 +38,6 @@ function B({ volumes, differenceInDays, isLoading }) {
     }
     findHighestTradingVolume(volumesArray)
    
-
-
     function timestampToDateConverter(timestamp){
         let t = new Date(timestamp)
         let date = (t.getFullYear()+"/"+(t.getMonth()+1)+"/"+t.getDate())
@@ -47,13 +45,14 @@ function B({ volumes, differenceInDays, isLoading }) {
     }
     let date = timestampToDateConverter(timestamp)
 
-
-debugger
     return (
         <div>
             <h3>B: Which date within a given date range had the highest trading volume?</h3>
-            <p>{date} within a given date range had the hihest trading volume </p>
-            <p>the volume on that day <strong>{max}</strong></p>
+            { error && <p>{error}</p> }
+            {isLoading ? <p>{isLoading}</p> : <div>
+              <p><strong>{date}</strong> had the hihest trading volume the volume on that day <strong>{max}</strong></p>
+            </div>
+            }
         </div>
     )
 }

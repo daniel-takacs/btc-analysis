@@ -1,8 +1,8 @@
 import React from 'react'
 
-function A({ isLoading, pricesArray, items }) {
+function A({ isLoading, pricesArray, prices, error }) {
     
-    //calculating Bearis Trend 
+    //calculating Bearish Trend 
 
     let bestStart  = 0;
     let curStart   = 0;
@@ -30,7 +30,6 @@ function A({ isLoading, pricesArray, items }) {
         tempArr.push(pricesArray[i])
     }
 
-    
     //sorting dates and pushing an array
     let sortedDates = []  
     function sortDates(arr){
@@ -40,8 +39,7 @@ function A({ isLoading, pricesArray, items }) {
             }
         }
     }
-    sortDates(items)
-
+    sortDates(prices)
 
     //get the first and the last date of array in timestamp
     function readFirstAndLastDate(arr){
@@ -51,7 +49,7 @@ function A({ isLoading, pricesArray, items }) {
     }
     const {first, last} = readFirstAndLastDate(sortedDates)
 
-    //converting timestamp to readable date
+    //converting timestamp to human date
     function timestampToDateConverter(firstTimestamp, lastTimestamp){
         let t1 = new Date(firstTimestamp)
         let t2 = new Date(lastTimestamp)
@@ -64,8 +62,9 @@ function A({ isLoading, pricesArray, items }) {
     return (
         <div>
             <h3>A: How many days in the longes bearish trend within a given date range?</h3>
-            {isLoading ? <p>Loading...</p> : <p>In bitcoin's historical data from CoinGecko, the price decreased <strong> {bestLength} </strong> days in a row 
-            for the inputs from {dateFirst} and to {dateLast}.</p>}
+            { error && <p>{error}</p> }
+            {isLoading ? <p>{isLoading}</p> : <p>In bitcoin's historical data from CoinGecko, the price decreased <strong> {bestLength} </strong> days in a row 
+            for the inputs from <strong>{dateFirst}</strong> and to <strong>{dateLast}</strong>.</p>}
         </div>
     )
 }
