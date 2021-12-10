@@ -27,7 +27,7 @@ function App() {
   //convert the given dates to timestamp
   function convertToTimestamp(startDate, endDate){
       let startTimestamp = Math.floor((new Date(startDate)).getTime() / 1000)
-      let endTimestamp = Math.floor((new Date(endDate)).getTime() / 1000)+(4*60*60) //give 1 hour to UTC / 3 hours to Current Timezone
+      let endTimestamp = Math.floor((new Date(endDate)).getTime() / 1000)+(4*60*60) //giving 1 hour to UTC / 3 hours to Current Timezone
       return {startTimestamp, endTimestamp}
   }
   

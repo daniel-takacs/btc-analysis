@@ -1,7 +1,7 @@
 import React from 'react'
 
 function B({ volumes, differenceInDays, isLoading, error }) {
-    
+
   const volumesArray = []
 
   const sortDayVolume = (diff, data)=> {
@@ -48,7 +48,7 @@ function B({ volumes, differenceInDays, isLoading, error }) {
             { error && <p>{error}</p> }
             {isLoading ? <p>{isLoading}</p> 
             : <div>
-                <p><strong>{date}</strong> had the hihest trading volume and the volume on that day was <strong>{max}</strong></p>
+                <p><strong>{date}</strong> had the hihest trading volume and the volume on that day was <strong>{max}</strong> in euros</p>
               </div>
             }
         </div>
