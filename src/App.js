@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import './App.css';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -16,27 +16,25 @@ function App() {
   const [endDateInput, setEndDateInput] = useState(new Date("2021/08/01"))
   const differenceInDays = diffInDaysCalculator(startDateInput, endDateInput)
   const {startTimestamp, endTimestamp} = convertToTimestamp(startDateInput, endDateInput)
+  const API_URL = `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart/range?vs_currency=eur&from=${startTimestamp}&to=${endTimestamp}`
 
-  //calculate number of days between the range
+  //check how many days in given date range
   function diffInDaysCalculator(firstDate, lastDate){
       let diffInTime = lastDate.getTime() - firstDate.getTime()
       let diffInDays = Math.floor(diffInTime / (1000 * 3600 * 24))
       return diffInDays
   }
-  //convert the given Date to Timestamp
+  //convert the given dates to timestamp
   function convertToTimestamp(startDate, endDate){
       let startTimestamp = Math.floor((new Date(startDate)).getTime() / 1000)
-      let endTimestamp = Math.floor((new Date(endDate)).getTime() / 1000)+(4*60*60) //give 1 hour to UTC - 3 hours to Current Timezone
+      let endTimestamp = Math.floor((new Date(endDate)).getTime() / 1000)+(4*60*60) //give 1 hour to UTC / 3 hours to Current Timezone
       return {startTimestamp, endTimestamp}
   }
   
   const handleClick = ()=> {
     fetchData()
-    //fetchDataVolumes()
   }
 
-  const API_URL = `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart/range?vs_currency=eur&from=${startTimestamp}&to=${endTimestamp}`
-  
   const fetchData = ()=> {
         setIsLoading('Loading...')
         setError(null)
@@ -52,23 +50,8 @@ function App() {
             setError(err.message)
           })
   }
-/* 
-  const fetchDataVolumes = ()=> {
-      setIsLoading(true)
-      fetch(API_URL)
-          .then(res => res.json())
-          .then(data => {
-            setIsLoading(false) 
-            setVolumes(data.total_volumes)
-          })
-    
-          .catch(err => {
-            setIsLoading(false)
-            setError(err.message)
-          })
-  }
- */
-  //Sort prices to an array
+
+  //sorting prices to an array
   const pricesArray = []
 
   const sortDayPrice = (diff, data)=> {
@@ -76,23 +59,22 @@ function App() {
       for(let i=0; i<data.length; i++){
           pricesArray.push(data[i][1])
       }
-      //console.log('more than 90')
     }else {
       for(let i=0; i<data.length; i=i+23){
         pricesArray.push(data[i][1])
       }
-      //console.log('less than 90')
     }
     return pricesArray
   }
   sortDayPrice(differenceInDays, prices)
-  //console.log('sorted prices',pricesArray)
 
     return (
       <div className="App">
-         <DatePicker dateFormat="yyyy-MM-dd" selected={startDateInput} onChange={date => setStartDateInput(date)}startDateInput={startDateInput}
-                     endDateInput={endDateInput}/>
-         <DatePicker dateFormat="yyyy-MM-dd" selected={endDateInput} onChange={date => setEndDateInput(date)}/>
+        <label>start date</label>
+        <DatePicker dateFormat="yyyy-MM-dd" selected={startDateInput} onChange={date => setStartDateInput(date)}
+                    startDateInput={startDateInput} endDateInput={endDateInput}/>
+        <label>end date</label>
+        <DatePicker dateFormat="yyyy-MM-dd" selected={endDateInput} onChange={date => setEndDateInput(date)}/>
         <button onClick={handleClick}>Get the data</button>
         <A prices={prices} isLoading={isLoading} pricesArray={pricesArray} error={error}/>
         <B volumes={volumes} isLoading={isLoading} differenceInDays={differenceInDays}error={error}/>

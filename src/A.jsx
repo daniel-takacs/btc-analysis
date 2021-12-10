@@ -1,30 +1,29 @@
 import React from 'react'
 
 function A({ isLoading, pricesArray, prices, error }) {
-    
     //calculating Bearish Trend 
-
-    let bestStart  = 0;
-    let curStart   = 0;
-    let bestLength = 1;
-    let curLength  = 1;
-    let tempArr = []
-
     function bearishTrendCalc(arr){
-        for(let j=0;j<arr.length;j++){
-            if(arr[j] < arr[j-1]){
+        let bestStart  = 0;
+        let curStart   = 0;
+        let bestLength = 1;
+        let curLength  = 1;
+        let tempArr = []
+
+        for(let i=0;i<arr.length;i++){
+            if(arr[i] < arr[i-1]){
                 curLength++
                 if(curLength > bestLength){
                     bestStart = curStart
                     bestLength = curLength
                 }
             }else {
-                curStart = j
+                curStart = i
                 curLength = 1
             }
         }
+        return {bestStart, bestLength, tempArr}
     }
-    bearishTrendCalc(pricesArray)
+    const {bestStart, bestLength, tempArr} = bearishTrendCalc(pricesArray)
 
     for(let i=bestStart; i<bestStart+bestLength;i++){
         tempArr.push(pricesArray[i])

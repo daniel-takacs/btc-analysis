@@ -1,7 +1,7 @@
 import React from 'react'
 
 function B({ volumes, differenceInDays, isLoading, error }) {
-  console.log(volumes)
+    
   const volumesArray = []
 
   const sortDayVolume = (diff, data)=> {
@@ -9,17 +9,14 @@ function B({ volumes, differenceInDays, isLoading, error }) {
       for(let i=0; i<data.length; i++){
         volumesArray.push(data[i])
       }
-      //console.log('more than 90')
     }else {
       for(let i=0; i<data.length; i=i+23){
         volumesArray.push(data[i])
       }
-      //console.log('less than 90')
     }
     return volumesArray
   }
   sortDayVolume(differenceInDays, volumes)
-  console.log('sorted volumes', volumesArray)
 
   //finding highest trading volume
 
@@ -49,9 +46,10 @@ function B({ volumes, differenceInDays, isLoading, error }) {
         <div>
             <h3>B: Which date within a given date range had the highest trading volume?</h3>
             { error && <p>{error}</p> }
-            {isLoading ? <p>{isLoading}</p> : <div>
-              <p><strong>{date}</strong> had the hihest trading volume the volume on that day <strong>{max}</strong></p>
-            </div>
+            {isLoading ? <p>{isLoading}</p> 
+            : <div>
+                <p><strong>{date}</strong> had the hihest trading volume and the volume on that day was <strong>{max}</strong></p>
+              </div>
             }
         </div>
     )
