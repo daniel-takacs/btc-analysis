@@ -2,7 +2,6 @@ import React from 'react'
 
 function C({ isLoading, prices, differenceInDays, error }) {
 
-  
   const sortDayPrices = (diff, data)=> {
     const pricesData = []
     if(diff >= 90){

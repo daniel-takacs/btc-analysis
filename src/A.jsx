@@ -1,13 +1,12 @@
 import React from 'react'
 
 function A({ isLoading, pricesArray, prices, error }) {
-    //calculating Bearish Trend 
+
     function bearishTrendCalc(arr){
         let bestStart  = 0;
         let curStart   = 0;
         let bestLength = 1;
         let curLength  = 1;
-        let tempArr = []
 
         for(let i=0;i<arr.length;i++){
             if(arr[i] < arr[i-1]){
@@ -21,14 +20,10 @@ function A({ isLoading, pricesArray, prices, error }) {
                 curLength = 1
             }
         }
-        return {bestStart, bestLength, tempArr}
+        return {bestStart, bestLength}
     }
-    const {bestStart, bestLength, tempArr} = bearishTrendCalc(pricesArray)
-
-    for(let i=bestStart; i<bestStart+bestLength;i++){
-        tempArr.push(pricesArray[i])
-    }
-
+    const {bestLength} = bearishTrendCalc(pricesArray)
+    
     //sorting dates and pushing an array
     let sortedDates = []  
     function sortDates(arr){
@@ -61,8 +56,9 @@ function A({ isLoading, pricesArray, prices, error }) {
     return (
         <div>
             <h3>A: How many days in the longes bearish trend within a given date range?</h3>
-            { error && <p>{error}</p> }
-            {isLoading ? <p>{isLoading}</p> : <p>In bitcoin's historical data from CoinGecko, the price decreased <strong> {bestLength} </strong> days in a row 
+            {error && <p>{error}</p> }
+            {isLoading ? <p>{isLoading}</p> 
+            : <p>In bitcoin's historical data from CoinGecko, the price decreased <strong> {bestLength} </strong> days in a row 
             for the inputs from <strong>{dateFirst}</strong> and to <strong>{dateLast}</strong>.</p>}
         </div>
     )

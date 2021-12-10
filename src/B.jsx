@@ -40,15 +40,15 @@ function B({ volumes, differenceInDays, isLoading, error }) {
         let date = (t.getFullYear()+"/"+(t.getMonth()+1)+"/"+t.getDate())
         return date
     }
-    let date = timestampToDateConverter(timestamp)
+    let { date } = timestampToDateConverter(timestamp)
 
     return (
         <div>
             <h3>B: Which date within a given date range had the highest trading volume?</h3>
-            { error && <p>{error}</p> }
+            {error && <p>{error}</p> }
             {isLoading ? <p>{isLoading}</p> 
             : <div>
-                <p><strong>{date}</strong> had the hihest trading volume and the volume on that day was <strong>{max}</strong> in euros</p>
+                <p><strong>{date}</strong> had the hihest trading volume and the volume on that day was <strong>{max}</strong> in euros.</p>
               </div>
             }
         </div>
