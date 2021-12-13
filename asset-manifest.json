@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/btc-analysis/static/css/main.229d0cf6.chunk.css",
+    "main.js": "/btc-analysis/static/js/main.3374a18f.chunk.js",
+    "main.js.map": "/btc-analysis/static/js/main.3374a18f.chunk.js.map",
+    "runtime-main.js": "/btc-analysis/static/js/runtime-main.15294f4b.js",
+    "runtime-main.js.map": "/btc-analysis/static/js/runtime-main.15294f4b.js.map",
+    "static/css/2.c8956ef5.chunk.css": "/btc-analysis/static/css/2.c8956ef5.chunk.css",
+    "static/js/2.5a42ead2.chunk.js": "/btc-analysis/static/js/2.5a42ead2.chunk.js",
+    "static/js/2.5a42ead2.chunk.js.map": "/btc-analysis/static/js/2.5a42ead2.chunk.js.map",
+    "index.html": "/btc-analysis/index.html",
+    "static/css/2.c8956ef5.chunk.css.map": "/btc-analysis/static/css/2.c8956ef5.chunk.css.map",
+    "static/css/main.229d0cf6.chunk.css.map": "/btc-analysis/static/css/main.229d0cf6.chunk.css.map",
+    "static/js/2.5a42ead2.chunk.js.LICENSE.txt": "/btc-analysis/static/js/2.5a42ead2.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.15294f4b.js",
+    "static/css/2.c8956ef5.chunk.css",
+    "static/js/2.5a42ead2.chunk.js",
+    "static/css/main.229d0cf6.chunk.css",
+    "static/js/main.3374a18f.chunk.js"
+  ]
+}
