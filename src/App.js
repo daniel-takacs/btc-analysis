@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
-import './App.css';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import './App.css'
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
 import A from './A'
-import B from './B';
-import C from './C';
+import B from './B'
+import C from './C'
 
 function App() {
 
-  const [prices, setprices] = useState([]);
+  const [prices, setprices] = useState([])
   const [volumes, setVolumes] = useState([])
-  const [isLoading, setIsLoading] = useState('Answer');
-  const [error, setError] = useState(null);
-  const [startDateInput, setStartDateInput] = useState(new Date("2020/03/01"));
+  const [isLoading, setIsLoading] = useState('Answer')
+  const [error, setError] = useState(null)
+  const [startDateInput, setStartDateInput] = useState(new Date("2020/03/01"))
   const [endDateInput, setEndDateInput] = useState(new Date("2021/08/01"))
   const differenceInDays = diffInDaysCalculator(startDateInput, endDateInput)
   const {startTimestamp, endTimestamp} = convertToTimestamp(startDateInput, endDateInput)
@@ -27,7 +27,7 @@ function App() {
   //convert the given dates to timestamp
   function convertToTimestamp(startDate, endDate){
       let startTimestamp = Math.floor((new Date(startDate)).getTime() / 1000)
-      let endTimestamp = Math.floor((new Date(endDate)).getTime() / 1000)+(4*60*60) //giving 1 hour to UTC / 3 hours to Current Timezone
+      let endTimestamp = Math.floor((new Date(endDate)).getTime() / 1000)+(3*60*60) //giving 3 hour to get UTC / 3 hours to Current Timezone
       return {startTimestamp, endTimestamp}
   }
   
