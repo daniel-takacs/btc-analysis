@@ -2,6 +2,12 @@
   padding: 10px;
   display: flex;
   flex-direction: column;
+}
+.date_input_container {
+  display: flex;
+}
+.answer_container {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
 }

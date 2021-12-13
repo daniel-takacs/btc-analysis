@@ -10,7 +10,7 @@ function App() {
 
   const [prices, setprices] = useState([])
   const [volumes, setVolumes] = useState([])
-  const [isLoading, setIsLoading] = useState('Answer')
+  const [isLoading, setIsLoading] = useState([])
   const [error, setError] = useState(null)
   const [startDateInput, setStartDateInput] = useState(new Date("2020/03/01"))
   const [endDateInput, setEndDateInput] = useState(new Date("2021/08/01"))
@@ -70,19 +70,19 @@ function App() {
 
     return (
       <div className="App">
-        <label>start date</label>
-        <div>
-          <DatePicker dateFormat="yyyy-MM-dd" selected={startDateInput} onChange={date => setStartDateInput(date)}
-                      startDateInput={startDateInput} endDateInput={endDateInput}/>
+        <div className='date_input_container'>
+          <div>
+            <DatePicker dateFormat="yyyy-MM-dd" selected={startDateInput} onChange={date => setStartDateInput(date)}
+                        startDateInput={startDateInput} endDateInput={endDateInput}/>
+          </div>
+          <div>
+            <DatePicker dateFormat="yyyy-MM-dd" selected={endDateInput} onChange={date => setEndDateInput(date)}/>
+          </div>
+          <div>
+            <button onClick={handleClick}>Get data</button>
+          </div>
         </div>
-        <label>end date</label>
-        <div>
-          <DatePicker dateFormat="yyyy-MM-dd" selected={endDateInput} onChange={date => setEndDateInput(date)}/>
-        </div>
-        <div>
-          <button onClick={handleClick}>Get the data</button>
-        </div>
-        <div>
+        <div className='answer_container'>
           <A prices={prices} isLoading={isLoading} pricesArray={pricesArray} error={error}/>
           <B volumes={volumes} isLoading={isLoading} differenceInDays={differenceInDays}error={error}/>
           <C prices={prices} isLoading={isLoading} pricesArray={pricesArray} differenceInDays={differenceInDays}error={error}/>
