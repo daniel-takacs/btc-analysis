@@ -55,7 +55,7 @@ function A({ isLoading, pricesArray, prices, error }) {
 
     return (
         <div>
-            <h3>A: How many days in the longes bearish trend within a given date range?</h3>
+            <h4>A: How many days in the longes bearish trend within a given date range?</h4>
             {error && <p>{error}</p> }
             {isLoading ? <p>{isLoading}</p> 
             : <p>In bitcoin's historical data from CoinGecko, the price decreased <strong> {bestLength} </strong> days in a row 

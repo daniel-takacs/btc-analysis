@@ -71,14 +71,22 @@ function App() {
     return (
       <div className="App">
         <label>start date</label>
-        <DatePicker dateFormat="yyyy-MM-dd" selected={startDateInput} onChange={date => setStartDateInput(date)}
-                    startDateInput={startDateInput} endDateInput={endDateInput}/>
+        <div>
+          <DatePicker dateFormat="yyyy-MM-dd" selected={startDateInput} onChange={date => setStartDateInput(date)}
+                      startDateInput={startDateInput} endDateInput={endDateInput}/>
+        </div>
         <label>end date</label>
-        <DatePicker dateFormat="yyyy-MM-dd" selected={endDateInput} onChange={date => setEndDateInput(date)}/>
-        <button onClick={handleClick}>Get the data</button>
-        <A prices={prices} isLoading={isLoading} pricesArray={pricesArray} error={error}/>
-        <B volumes={volumes} isLoading={isLoading} differenceInDays={differenceInDays}error={error}/>
-        <C prices={prices} isLoading={isLoading} pricesArray={pricesArray} differenceInDays={differenceInDays}error={error}/>
+        <div>
+          <DatePicker dateFormat="yyyy-MM-dd" selected={endDateInput} onChange={date => setEndDateInput(date)}/>
+        </div>
+        <div>
+          <button onClick={handleClick}>Get the data</button>
+        </div>
+        <div>
+          <A prices={prices} isLoading={isLoading} pricesArray={pricesArray} error={error}/>
+          <B volumes={volumes} isLoading={isLoading} differenceInDays={differenceInDays}error={error}/>
+          <C prices={prices} isLoading={isLoading} pricesArray={pricesArray} differenceInDays={differenceInDays}error={error}/>
+        </div>
       </div>
     );
   }

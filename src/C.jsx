@@ -60,7 +60,7 @@ function C({ isLoading, prices, differenceInDays, error }) {
 
   return (
       <div>
-          <h3>C: Which the best day for buying bitcoin, and the best day for selling the bought bitcoin to maximize profits?</h3>
+          <h4>C: Which the best day for buying bitcoin, and the best day for selling the bought bitcoin to maximize profits?</h4>
           {error && <p>{error}</p>}
           {isLoading ? <p>{isLoading}</p>
           : decrease ? <p>You should not buy (nor sell) bitcoin on any of the days</p>
